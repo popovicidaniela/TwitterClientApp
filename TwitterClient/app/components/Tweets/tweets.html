@@ -1,0 +1,32 @@
+﻿<h1>Twitter Client</h1>
+
+<p>Authenticate the twitter client app, search for tweets by hashtag, filter them with free text search and export.</p>
+
+<form ng-show="ShowAuth">
+    <input type="text" ng-model="key" class="form-control" placeholder="key..." aria-describedby="basic-addon1">
+    <input type="text" ng-model="secret" class="form-control" placeholder="secret..." aria-describedby="basic-addon1">
+    <label ng-bind="alert"></label>
+    <button type="submit" class="btn btn-secondary btn-md btn-block" ng-click="authenticate()">Authenticate</button>
+</form>
+
+<form>
+    <div class="input-group" ng-show="ShowSearch">
+        <span class="input-group-addon" id="basic-addon1">#</span>
+        <input type="text" ng-model="hashtag" class="form-control" placeholder="hashtag" aria-describedby="basic-addon1">
+        <button type="submit" class="btn btn-secondary btn-md" ng-click="gethashtagtweets()">Search</button>
+    </div>
+</form>
+
+<table class="table" id="searchTextResults" ng-show="IsVisible">
+    <tr>
+        <td><input ng-model="searchText" type="text" placeholder="Filter..." style="outline: none;border: 0px solid"></td>
+        <td align="right">
+            <a ng-href="{{ fileUrl }}" download="tweets.json">Export</a>
+        </td>
+    </tr>
+    <tr><th>Created At</th><th>Tweet Text</th></tr>
+    <tr ng-repeat="tweet in tweets | filter:searchText">
+        <td>{{tweet.created_at}}</td>
+        <td>{{tweet.text}}</td>
+    </tr>
+</table>
