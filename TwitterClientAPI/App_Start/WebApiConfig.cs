@@ -17,7 +17,7 @@ namespace TwitterClientAPI
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            var cors = new EnableCorsAttribute("http://localhost:61226", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
             var json = config.Formatters.JsonFormatter;
